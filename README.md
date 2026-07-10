@@ -7,7 +7,7 @@ Frontend em **Next.js 15 (App Router) + TypeScript + Tailwind CSS**, consumindo 
 ✅ Autenticação (login/registro), com refresh automático de token via interceptor do Axios
 ✅ Catálogo com busca (debounced) e filtro por categoria
 ✅ Página de detalhe do livro + adicionar ao carrinho
-🔜 Carrinho, checkout e "meus pedidos" (próxima fase)
+✅ Carrinho (atualizar quantidade, remover item), checkout com endereço e "meus pedidos" (listagem, detalhe e cancelamento)
 🔜 Painel admin, contendo CRUD de livros e estoque (próxima fase)
 
 ## Rodando localmente
