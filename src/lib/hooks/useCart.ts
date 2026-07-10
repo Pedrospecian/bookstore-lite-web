@@ -29,3 +29,31 @@ export function useAddToCart() {
     },
   });
 }
+
+export function useUpdateCartItem() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ itemId, quantity }: { itemId: string; quantity: number }) => {
+      const { data } = await api.put<Cart>(`/cart/items/${itemId}`, { quantity });
+      return data;
+    },
+    onSuccess: (data) => {
+      queryClient.setQueryData(["cart"], data);
+    },
+  });
+}
+
+export function useRemoveCartItem() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (itemId: string) => {
+      const { data } = await api.delete<Cart>(`/cart/items/${itemId}`);
+      return data;
+    },
+    onSuccess: (data) => {
+      queryClient.setQueryData(["cart"], data);
+    },
+  });
+}
