@@ -5,6 +5,7 @@ import type { Book, BookCategory, Page } from "@/types/api";
 interface BookSearchParams {
   q?: string;
   category?: BookCategory;
+  active?: boolean;
   page?: number;
   size?: number;
 }
@@ -17,6 +18,7 @@ export function useBooks(params: BookSearchParams) {
         params: {
           q: params.q || undefined,
           category: params.category || undefined,
+          active: params.active,
           page: params.page ?? 0,
           size: params.size ?? 12,
         },
