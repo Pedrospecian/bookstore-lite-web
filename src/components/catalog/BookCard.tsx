@@ -13,7 +13,7 @@ export function BookCard({ book }: { book: Book }) {
       href={`/books/${book.id}`}
       className="group flex gap-3 border border-ink/10 bg-paper-dim/40 p-3 transition-colors hover:border-forest/40 hover:bg-paper-dim"
     >
-      {/* Lombada — barra vertical colorida por categoria, como numa estante */}
+      {/* Lombada (barra vertical colorida por categoria, como numa estante) */}
       <div
         className="w-2 shrink-0 self-stretch"
         style={{ backgroundColor: spineColor }}

@@ -79,9 +79,9 @@ function OrderDetail({ id }: { id: string }) {
         <h2 className="mb-2 font-mono text-[11px] uppercase tracking-wide text-ink/50">Endereço de entrega</h2>
         <p className="text-sm text-ink/75">
           {order.address.street}, {order.address.number}
-          {order.address.complement ? ` — ${order.address.complement}` : ""}
+          {order.address.complement ? ` - ${order.address.complement}` : ""}
           <br />
-          {order.address.neighborhood} — {order.address.city}/{order.address.state}
+          {order.address.neighborhood} - {order.address.city}/{order.address.state}
           <br />
           CEP {order.address.zipCode}
         </p>

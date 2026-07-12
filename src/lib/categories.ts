@@ -11,7 +11,7 @@ export const CATEGORY_LABELS: Record<BookCategory, string> = {
   OTHER: "Outros",
 };
 
-// Cor de "lombada" por categoria — usada nos cartões do catálogo e no filtro
+// Cor de "lombada" por categoria, usada nos cartões do catálogo e no filtro
 export const CATEGORY_SPINE_COLOR: Record<BookCategory, string> = {
   FICTION: "#6E2130",
   ROMANCE: "#9C3D5C",
