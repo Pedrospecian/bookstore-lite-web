@@ -26,8 +26,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alfarrábio — Livraria",
-  description: "Catálogo de livros — projeto de portfólio",
+  title: "Alfarrábio - Livraria",
+  description: "Catálogo de livros - projeto de portfólio",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

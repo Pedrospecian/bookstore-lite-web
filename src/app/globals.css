@@ -18,7 +18,7 @@
     @apply font-display;
   }
 
-  /* Foco visível sempre — inclusive pra quem navega por teclado */
+  /* Foco visível sempre, inclusive pra quem navega por teclado */
   :focus-visible {
     outline: 2px solid theme("colors.brass.DEFAULT");
     outline-offset: 2px;
@@ -35,7 +35,7 @@
 }
 
 @layer components {
-  /* "Lombada de livro" — usado nos filtros de categoria, como etiquetas de fichário */
+  /* "Lombada de livro", usado nos filtros de categoria, como etiquetas de fichário */
   .spine-tag {
     @apply relative inline-flex items-center gap-2 border border-ink/15 bg-paper-dim px-3 py-1.5
            font-mono text-[11px] uppercase tracking-[0.12em] text-ink/70 transition-colors

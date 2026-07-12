@@ -37,8 +37,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ user: null, accessToken: null, refreshToken: null });
   },
 
-  // Lê o localStorage uma vez, no client, depois da primeira renderização —
-  // evita mismatch de hidratação entre servidor e cliente no Next.js.
+  // Lê o localStorage uma vez, no client, depois da primeira renderização.
+  // Isso evita mismatch de hidratação entre servidor e cliente no Next.js.
   hydrate: () => {
     const accessToken = localStorage.getItem("accessToken");
     const refreshToken = localStorage.getItem("refreshToken");
