@@ -13,10 +13,16 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    
+    if (passwordConfirm !== password) {
+      return setError("As senhas não coincidem.");
+    }
+
     setError(null);
     try {
       await register.mutateAsync({ name, email, password });
@@ -60,6 +66,18 @@ export default function RegisterPage() {
             className="field-input"
           />
           <p className="mt-1.5 text-xs text-ink/40">Mínimo 8 caracteres, com ao menos 1 maiúscula e 1 número.</p>
+        </div>
+
+        <div>
+          <label htmlFor="passwordConfirm" className="field-label">Confirmar Senha</label>
+          <input
+            id="passwordConfirm"
+            type="password"
+            required
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            className="field-input"
+          />
         </div>
 
         {error && <p className="text-sm text-bordeaux" role="alert">{error}</p>}
