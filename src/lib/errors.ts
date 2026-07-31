@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import type { ApiErrorBody } from "@/types/api";
 
-export function getApiErrorMessage(error: unknown, fallback = "Algo deu errado. Tente novamente."): string {
+export function getApiErrorMessage(error: unknown, fallback = "Algo deu errado. Tente novamente mais tarde."): string {
   if (error instanceof AxiosError) {
     const body = error.response?.data as ApiErrorBody | undefined;
     if (body?.errors) {

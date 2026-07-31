@@ -45,7 +45,7 @@ export default function HomePage() {
 
       {isError && (
         <p className="py-16 text-center text-bordeaux">
-          Não foi possível carregar o catálogo agora. Tente novamente em instantes.
+          Não foi possível carregar o catálogo agora. Tente novamente mais tarde.
         </p>
       )}
 
