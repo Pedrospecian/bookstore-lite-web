@@ -17,6 +17,8 @@ export type BookCategory =
   | "FICTION"
   | "ROMANCE"
   | "HORROR"
+  | "PHILOSOPHY"
+  | "HISTORY"
   | "THRILLER"
   | "EDUCATION"
   | "MANUAL"
