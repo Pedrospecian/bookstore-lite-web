@@ -4,14 +4,45 @@
 
 :root {
   color-scheme: light;
+
+  /* Paleta "diurna" - valores em rgb sem vírgula, pro Tailwind montar
+     rgb(var(--x) / <alpha-value>) e continuar aceitando /opacidade. */
+  --color-ink: 20 25 20;
+  --color-paper: 242 239 228;
+  --color-paper-dim: 232 227 211;
+  --color-forest: 31 58 46;
+  --color-forest-light: 44 78 61;
+  --color-forest-dark: 18 39 32;
+  --color-brass: 201 162 75;
+  --color-brass-light: 224 192 120;
+  --color-brass-dark: 156 122 50;
+  --color-bordeaux: 110 33 48;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Mesma paleta, reequilibrada pro modo noturno: fundo escuro
+     esverdeado (como um estojo de couro), texto claro tipo papel
+     envelhecido, e acentos clareados o bastante pra manter contraste. */
+  --color-ink: 230 226 214;
+  --color-paper: 22 25 20;
+  --color-paper-dim: 31 35 28;
+  --color-forest: 132 181 156;
+  --color-forest-light: 160 199 178;
+  --color-forest-dark: 104 160 132;
+  --color-brass: 214 175 102;
+  --color-brass-light: 226 195 140;
+  --color-brass-dark: 189 150 84;
+  --color-bordeaux: 214 108 118;
 }
 
 @layer base {
   body {
-    @apply bg-paper text-ink font-body;
+    @apply bg-paper text-ink font-body transition-colors duration-200;
     background-image:
-      linear-gradient(180deg, rgba(20, 25, 20, 0.02) 0%, transparent 8%),
-      repeating-linear-gradient(0deg, rgba(20, 25, 20, 0.015) 0px, rgba(20, 25, 20, 0.015) 1px, transparent 1px, transparent 3px);
+      linear-gradient(180deg, rgb(var(--color-ink) / 0.02) 0%, transparent 8%),
+      repeating-linear-gradient(0deg, rgb(var(--color-ink) / 0.015) 0px, rgb(var(--color-ink) / 0.015) 1px, transparent 1px, transparent 3px);
   }
 
   h1, h2, h3, h4 {
