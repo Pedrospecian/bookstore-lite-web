@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuthStore } from "@/store/auth.store";
+import { useThemeStore } from "@/store/theme.store";
 import { useCart } from "@/lib/hooks/useCart";
 import { FaSun, FaMoon } from "react-icons/fa";
 
@@ -11,14 +12,23 @@ export function Header() {
   const logout = useAuthStore((s) => s.logout);
   const { data: cart } = useCart();
 
+  const theme = useThemeStore((s) => s.theme);
+  const toggleTheme = useThemeStore((s) => s.toggleTheme);
+
   const itemCount = cart?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
 
   return (
     <header className="border-b border-ink/10 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
         <div className="flex items-center justify-between gap-6">
-          <button>
-            <FaSun />
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Ativar modo claro" : "Ativar modo escuro"}
+            title={theme === "dark" ? "Modo claro" : "Modo escuro"}
+            className="text-ink/60 transition-colors hover:text-forest"
+          >
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
           <Link href="/" className="flex items-baseline gap-2">
             <span className="font-display text-2xl tracking-tight text-forest">Alfarrábio</span>
@@ -46,7 +56,7 @@ export function Header() {
               >
                 Carrinho
                 {itemCount > 0 && (
-                  <span className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center bg-brass px-1 font-mono text-[11px] text-ink">
+                  <span className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center bg-brass px-1 font-mono text-[11px] text-[#141914]">
                     {itemCount}
                   </span>
                 )}
