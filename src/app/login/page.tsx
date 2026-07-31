@@ -29,7 +29,9 @@ function LoginForm() {
   return (
     <div className="mx-auto max-w-sm px-5 py-16">
       <h1 className="font-display text-3xl text-ink">Entrar</h1>
-      <p className="mt-2 text-sm text-ink/60">Acesse sua conta pra ver seus pedidos e finalizar compras.</p>
+      <p className="mt-2 text-sm text-ink/60">
+        Acesse sua conta pra ver seus pedidos e finalizar compras.
+      </p>
 
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
         <div>

@@ -4,6 +4,8 @@ export const CATEGORY_LABELS: Record<BookCategory, string> = {
   FICTION: "Ficção",
   ROMANCE: "Romance",
   HORROR: "Terror",
+  PHILOSOPHY: "Filosofia",
+  HISTORY: "História",
   THRILLER: "Suspense",
   EDUCATION: "Não-ficção",
   MANUAL: "Manuais",
@@ -15,6 +17,8 @@ export const CATEGORY_LABELS: Record<BookCategory, string> = {
 export const CATEGORY_SPINE_COLOR: Record<BookCategory, string> = {
   FICTION: "#6E2130",
   ROMANCE: "#9C3D5C",
+  PHILOSOPHY: "#7C3DBC",
+  HISTORY: "#3C5DBC",
   HORROR: "#1F2421",
   THRILLER: "#3A3F1F",
   EDUCATION: "#1F3A2E",
