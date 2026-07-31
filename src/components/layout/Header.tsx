@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useAuthStore } from "@/store/auth.store";
 import { useCart } from "@/lib/hooks/useCart";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 export function Header() {
   const user = useAuthStore((s) => s.user);
@@ -15,12 +16,17 @@ export function Header() {
   return (
     <header className="border-b border-ink/10 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="font-display text-2xl tracking-tight text-forest">Alfarrábio</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.15em] text-ink/40 sm:inline">
-            Livraria
-          </span>
-        </Link>
+        <div className="flex items-center justify-between gap-6">
+          <button>
+            <FaSun />
+          </button>
+          <Link href="/" className="flex items-baseline gap-2">
+            <span className="font-display text-2xl tracking-tight text-forest">Alfarrábio</span>
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.15em] text-ink/40 sm:inline">
+              Livraria
+            </span>
+          </Link>
+        </div>
 
         <nav className="flex items-center gap-5 font-body text-sm">
           {!isHydrated ? null : user ? (
