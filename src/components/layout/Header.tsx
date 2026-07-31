@@ -70,7 +70,7 @@ export function Header() {
               <Link href="/login" className="text-ink/70 transition-colors hover:text-forest">
                 Entrar
               </Link>
-              <Link href="/register" className="btn-primary !py-1.5 !px-4 text-xs">
+              <Link href="/register" className="btn-primary !py-1.5 !px-4">
                 Criar conta
               </Link>
             </>
