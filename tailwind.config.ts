@@ -1,25 +1,42 @@
 import type { Config } from "tailwindcss";
 
+// Lê a variável CSS (definida em globals.css para :root e .dark) e monta uma
+// cor rgb() válida pro Tailwind, preservando o suporte a modificadores de
+// opacidade como `text-ink/70` ou `border-forest/30`.
+function withOpacity(variableName: string) {
+  return ({ opacityValue }: { opacityValue?: string }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${variableName}) / ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 const config: Config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#141914",
+        ink: withOpacity("--color-ink"),
         forest: {
-          DEFAULT: "#1F3A2E",
-          light: "#2C4E3D",
-          dark: "#122720",
+          DEFAULT: withOpacity("--color-forest"),
+          light: withOpacity("--color-forest-light"),
+          dark: withOpacity("--color-forest-dark"),
         },
-        paper: "#F2EFE4",
-        "paper-dim": "#E8E3D3",
+        paper: withOpacity("--color-paper"),
+        "paper-dim": withOpacity("--color-paper-dim"),
         brass: {
-          DEFAULT: "#C9A24B",
-          light: "#E0C078",
-          dark: "#9C7A32",
+          DEFAULT: withOpacity("--color-brass"),
+          light: withOpacity("--color-brass-light"),
+          dark: withOpacity("--color-brass-dark"),
         },
-        bordeaux: "#6E2130",
-      },
+        bordeaux: withOpacity("--color-bordeaux"),
+        // Tailwind aceita funções por cor em tempo de execução (é o padrão
+        // oficial pra cores baseadas em CSS var + opacidade), mas o tipo
+        // bundlado do pacote só modela folhas como `string`. O cast abaixo
+        // só ajusta isso pro TypeScript, sem afetar o build/runtime.
+      } as unknown as Record<string, string>,
       fontFamily: {
         display: ["var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
