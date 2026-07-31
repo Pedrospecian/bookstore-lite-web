@@ -10,13 +10,13 @@
   --color-ink: 20 25 20;
   --color-paper: 242 239 228;
   --color-paper-dim: 232 227 211;
-  --color-forest: 31 58 46;
-  --color-forest-light: 44 78 61;
-  --color-forest-dark: 18 39 32;
+  --color-forest: 31 88 46;
+  --color-forest-light: 44 108 61;
+  --color-forest-dark: 18 69 32;
   --color-brass: 201 162 75;
   --color-brass-light: 224 192 120;
   --color-brass-dark: 156 122 50;
-  --color-bordeaux: 110 33 48;
+  --color-bordeaux: 150 33 58;
 }
 
 .dark {
@@ -28,9 +28,9 @@
   --color-ink: 230 226 214;
   --color-paper: 22 25 20;
   --color-paper-dim: 31 35 28;
-  --color-forest: 132 181 156;
-  --color-forest-light: 160 199 178;
-  --color-forest-dark: 104 160 132;
+  --color-forest: 112 171 136;
+  --color-forest-light: 140 189 158;
+  --color-forest-dark: 84 150 112;
   --color-brass: 214 175 102;
   --color-brass-light: 226 195 140;
   --color-brass-dark: 189 150 84;
