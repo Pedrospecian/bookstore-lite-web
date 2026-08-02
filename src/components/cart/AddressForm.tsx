@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { useCepLookup } from "@/lib/hooks/useCepLookup";
+
 export interface AddressFormValues {
   street: string;
   number: string;
@@ -20,10 +23,37 @@ const BRAZILIAN_STATES = [
   "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
 ];
 
+function formatCep(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  return digits.length > 5 ? `${digits.slice(0, 5)}-${digits.slice(5)}` : digits;
+}
+
 export function AddressForm({ values, onChange }: Props) {
+  const numberInputRef = useRef<HTMLInputElement>(null);
+  const lastAppliedCep = useRef<string | null>(null);
+
+  const { data: cepAddress, isFetching: isLookingUpCep, isError: cepNotFound } = useCepLookup(values.zipCode);
+
   function set<K extends keyof AddressFormValues>(key: K, value: AddressFormValues[K]) {
     onChange({ ...values, [key]: value });
   }
+
+  // Assim que o ViaCEP retorna um endereço válido, preenche rua/bairro/
+  // cidade/estado automaticamente e joga o foco pro campo "Número".
+  useEffect(() => {
+    if (!cepAddress || lastAppliedCep.current === cepAddress.cep) return;
+
+    lastAppliedCep.current = cepAddress.cep;
+    onChange({
+      ...values,
+      street: cepAddress.logradouro || values.street,
+      neighborhood: cepAddress.bairro || values.neighborhood,
+      city: cepAddress.localidade,
+      state: cepAddress.uf,
+    });
+    numberInputRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cepAddress]);
 
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -34,7 +64,7 @@ export function AddressForm({ values, onChange }: Props) {
 
       <div>
         <label htmlFor="number" className="field-label">Número</label>
-        <input id="number" required value={values.number} onChange={(e) => set("number", e.target.value)} className="field-input" />
+        <input id="number" ref={numberInputRef} required value={values.number} onChange={(e) => set("number", e.target.value)} className="field-input" />
       </div>
 
       <div>
@@ -68,11 +98,19 @@ export function AddressForm({ values, onChange }: Props) {
           <input
             id="zipCode"
             required
+            inputMode="numeric"
             placeholder="00000-000"
             value={values.zipCode}
-            onChange={(e) => set("zipCode", e.target.value)}
+            onChange={(e) => set("zipCode", formatCep(e.target.value))}
             className="field-input"
+            aria-describedby="zipCode-hint"
           />
+          <p id="zipCode-hint" className="mt-1 h-4 font-mono text-[11px] text-ink/50">
+            {isLookingUpCep && "Buscando endereço..."}
+            {!isLookingUpCep && cepNotFound && (
+              <span className="text-bordeaux">CEP não encontrado.</span>
+            )}
+          </p>
         </div>
       </div>
     </div>
